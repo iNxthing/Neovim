@@ -1,0 +1,94 @@
+{
+  "function tipada": {
+    "prefix": "tsfn",
+    "body": [
+      "function ${1:name}(${2:arg}: ${3:string}): ${4:void} {",
+      "  $0",
+      "}"
+    ],
+    "description": "Función con tipos"
+  },
+  "arrow async": {
+    "prefix": "tsasync",
+    "body": "const ${1:name} = async (${2:arg}: ${3:string}): Promise<${4:void}> => {\n  $0\n}",
+    "description": "Función flecha async"
+  },
+  "interface": {
+    "prefix": "tsiface",
+    "body": [
+      "interface ${1:Name} {",
+      "  ${2:prop}: ${3:string};",
+      "  $0",
+      "}"
+    ],
+    "description": "Declaración de interface"
+  },
+  "type alias": {
+    "prefix": "tstype",
+    "body": "type ${1:Name} = ${2:string} | ${3:number};$0",
+    "description": "Alias de tipo"
+  },
+  "fetch con try/catch": {
+    "prefix": "tsfetch",
+    "body": [
+      "try {",
+      "  const ${1:response} = await fetch('${2:url}', {",
+      "    method: '${3:GET}',",
+      "    headers: { 'Content-Type': 'application/json' },",
+      "    ${4:body: JSON.stringify(${5:data}),}",
+      "  });",
+      "  if (!${1:response}.ok) throw new Error(${1:response}.statusText);",
+      "  const ${6:data} = await ${1:response}.json();",
+      "  $0",
+      "} catch (${7:error}) {",
+      "  console.error('${8:Fallo al obtener datos}:', ${7:error});",
+      "}"
+    ],
+    "description": "fetch async con manejo de errores"
+  },
+  "try/catch/finally": {
+    "prefix": "tstry",
+    "body": [
+      "try {",
+      "  $1",
+      "} catch (${2:error}) {",
+      "  console.error($2);",
+      "  ${3:throw $2;}",
+      "} finally {",
+      "  $0",
+      "}"
+    ],
+    "description": "try/catch/finally"
+  },
+  "describe / it": {
+    "prefix": "tsdes",
+    "body": [
+      "describe('${1:Nombre}', () => {",
+      "  it('${2:comportamiento esperado}', () => {",
+      "    $0",
+      "  });",
+      "});"
+    ],
+    "description": "Test con describe/it (vitest/jest)"
+  },
+  "Promise.all": {
+    "prefix": "tsprom",
+    "body": [
+      "const [${1:a}, ${2:b}] = await Promise.all([",
+      "  ${3:fetchA()},",
+      "  ${4:fetchB()},",
+      "]);$0"
+    ],
+    "description": "Desestructuración de Promise.all"
+  },
+  "console.log": {
+    "prefix": "tslog",
+    "body": "console.log('${1:label}:', ${2:value});$0",
+    "description": "console.log con etiqueta"
+  },
+  "map tipado": {
+    "prefix": "tsmap",
+    "body": "const ${1:result} = ${2:items}.map((${3:item}: ${4:Item}): ${5:string} => ${6:item.name});$0",
+    "description": "map con tipos en los parámetros"
+  }
+}

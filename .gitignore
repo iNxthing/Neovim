@@ -1,0 +1,14 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+
+# archivos sueltos / temporales
+Untitled
+*.swp
+*.swo
+.DS_Store

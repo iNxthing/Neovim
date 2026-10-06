@@ -1,0 +1,88 @@
+{
+  "function": {
+    "prefix": "jsfn",
+    "body": [
+      "function ${1:name}(${2:arg}) {",
+      "  $0",
+      "}"
+    ],
+    "description": "Declaración de función"
+  },
+  "arrow async": {
+    "prefix": "jsasync",
+    "body": "const ${1:name} = async (${2:arg}) => {\n  $0\n}",
+    "description": "Función flecha async"
+  },
+  "fetch con try/catch": {
+    "prefix": "jsfetch",
+    "body": [
+      "try {",
+      "  const ${1:response} = await fetch('${2:url}', {",
+      "    method: '${3:GET}',",
+      "    headers: { 'Content-Type': 'application/json' },",
+      "    ${4:body: JSON.stringify(${5:data}),}",
+      "  });",
+      "  if (!${1:response}.ok) throw new Error(${1:response}.statusText);",
+      "  const ${6:data} = await ${1:response}.json();",
+      "  $0",
+      "} catch (${7:error}) {",
+      "  console.error('${8:Fallo al obtener datos}:', ${7:error});",
+      "}"
+    ],
+    "description": "fetch async con manejo de errores"
+  },
+  "try/catch/finally": {
+    "prefix": "jstry",
+    "body": [
+      "try {",
+      "  $1",
+      "} catch (${2:error}) {",
+      "  console.error($2);",
+      "  ${3:throw $2;}",
+      "} finally {",
+      "  $0",
+      "}"
+    ],
+    "description": "try/catch/finally"
+  },
+  "describe / it": {
+    "prefix": "jsdes",
+    "body": [
+      "describe('${1:Nombre}', () => {",
+      "  it('${2:comportamiento esperado}', () => {",
+      "    $0",
+      "  });",
+      "});"
+    ],
+    "description": "Test con describe/it (vitest/jest)"
+  },
+  "DOM listo": {
+    "prefix": "jsdom",
+    "body": [
+      "document.addEventListener('DOMContentLoaded', () => {",
+      "  $0",
+      "});"
+    ],
+    "description": "Esperar a que el DOM esté listo"
+  },
+  "querySelector": {
+    "prefix": "jsq",
+    "body": "const ${1:el} = document.querySelector('${2:selector}');$0",
+    "description": "querySelector con null check implícito"
+  },
+  "console.log": {
+    "prefix": "jslog",
+    "body": "console.log('${1:label}:', ${2:value});$0",
+    "description": "console.log con etiqueta"
+  },
+  "Promise.all": {
+    "prefix": "jsprom",
+    "body": [
+      "const [${1:a}, ${2:b}] = await Promise.all([",
+      "  ${3:fetchA()},",
+      "  ${4:fetchB()},",
+      "]);$0"
+    ],
+    "description": "Desestructuración de Promise.all"
+  }
+}

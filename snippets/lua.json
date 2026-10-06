@@ -1,0 +1,86 @@
+{
+  "Spec de plugin lazy.nvim": {
+    "prefix": "lplugin",
+    "body": [
+      "return {",
+      "  \"${1:author}/${2:plugin.nvim}\",",
+      "  event = \"${3:VeryLazy}\",",
+      "  opts = {",
+      "    $4",
+      "  },",
+      "  config = function(_, opts)",
+      "    require(\"${2:plugin.nvim}\").setup(opts)$0",
+      "  end,",
+      "}"
+    ],
+    "description": "Spec de plugin para lua/plugins/*.lua"
+  },
+  "augroup + autocmd": {
+    "prefix": "laugroup",
+    "body": [
+      "local group = vim.api.nvim_create_augroup(\"${1:MyGroup}\", { clear = true })",
+      "",
+      "vim.api.nvim_create_autocmd(\"${2:BufWritePre}\", {",
+      "  group = group,",
+      "  pattern = \"${3:*}\",",
+      "  callback = function(args)",
+      "    $4$0",
+      "  end,",
+      "})"
+    ],
+    "description": "Autocmd con augroup (sin duplicados)"
+  },
+  "keymap": {
+    "prefix": "lkey",
+    "body": [
+      "vim.keymap.set(\"${1:n}\", \"${2:<leader>x}\", function()",
+      "  $3$0",
+      "end, { desc = \"${4:Descripción}\", silent = true })"
+    ],
+    "description": "vim.keymap.set con descripción"
+  },
+  "require local": {
+    "prefix": "lreq",
+    "body": "local ${1:mod} = require(\"${2:${1:mod}}\")$0",
+    "description": "local x = require(...)"
+  },
+  "require pcall": {
+    "prefix": "lpcall",
+    "body": [
+      "local ok, ${1:mod} = pcall(require, \"${2:${1:mod}}\")",
+      "if not ok then return end$0"
+    ],
+    "description": "require seguro con pcall"
+  },
+  "function": {
+    "prefix": "lfn",
+    "body": [
+      "---${3:Descripción}",
+      "---@param ${1:x} ${2:string}",
+      "---@return ${4:nil}",
+      "local function ${5:name}(${1:x})",
+      "  $0",
+      "end"
+    ],
+    "description": "Función local con anotaciones LSP (lua_ls)"
+  },
+  "vim.opt": {
+    "prefix": "lopt",
+    "body": "vim.opt.${1:shiftwidth} = ${2:2}$0",
+    "description": "Opción de Neovim"
+  },
+  "vim.notify con error": {
+    "prefix": "lerr",
+    "body": "vim.notify(\"${1:Mensaje}\", vim.log.levels.ERROR, { title = \"${2:Titulo}\" })$0",
+    "description": "Notificación de error"
+  },
+  "if con guardia": {
+    "prefix": "lguard",
+    "body": [
+      "if not ${1:cond} then",
+      "  return${2: ${3:nil}}",
+      "end$0"
+    ],
+    "description": "Guard clause return temprano"
+  }
+}

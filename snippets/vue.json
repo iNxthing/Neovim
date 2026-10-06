@@ -1,0 +1,105 @@
+{
+  "SFC con script setup (TS)": {
+    "prefix": "vsetup",
+    "body": [
+      "<script setup lang=\"ts\">",
+      "import { ref, computed, watch, onMounted } from 'vue'",
+      "",
+      "const ${1:name} = ref${2:<${3:string}>}(${4:''})",
+      "",
+      "$0",
+      "</script>",
+      "",
+      "<template>",
+      "  <div>$5</div>",
+      "</template>"
+    ],
+    "description": "Componente Vue SFC con <script setup lang=\"ts\">"
+  },
+  "ref tipado": {
+    "prefix": "vref",
+    "body": "const ${1:name} = ref${2:<${3:string}>}(${4:value})$0",
+    "description": "ref() con tipo explícito"
+  },
+  "computed get/set": {
+    "prefix": "vcomputed",
+    "body": [
+      "const ${1:name} = computed({",
+      "  get: () => ${2:value},",
+      "  set: (${3:newValue}) => {",
+      "    $4",
+      "  },",
+      "})$0"
+    ],
+    "description": "computed con getter y setter"
+  },
+  "watch": {
+    "prefix": "vwatch",
+    "body": [
+      "watch(${1:source}, (${2:newValue}, ${3:oldValue}) => {",
+      "  $4",
+      "}, { immediate: ${5:false}, deep: ${6:false} })$0"
+    ],
+    "description": "watch con opciones immediate/deep"
+  },
+  "onMounted / onUnmounted": {
+    "prefix": "vonmount",
+    "body": [
+      "onMounted(() => {",
+      "  $1",
+      "})",
+      "",
+      "onUnmounted(() => {",
+      "  $2",
+      "})$0"
+    ],
+    "description": "Ciclo de vida de componente"
+  },
+  "defineProps tipado": {
+    "prefix": "vprop",
+    "body": [
+      "const props = defineProps<{",
+      "  ${1:name}: ${2:string}",
+      "}>()$0"
+    ],
+    "description": "Props con tipado de TypeScript"
+  },
+  "defineEmits tipado": {
+    "prefix": "vemit",
+    "body": [
+      "const emit = defineEmits<{",
+      "  (e: '${1:update}', ${2:value}: ${3:string}): void",
+      "}>()$0"
+    ],
+    "description": "Emits con tipado de TypeScript"
+  },
+  "slot con props": {
+    "prefix": "vslot",
+    "body": "<slot name=\"${1:default}\" :${2:item}=\"${3:value}\">$4</slot>$0",
+    "description": "<slot> con props que se pasan al scope"
+  },
+  "v-for con key": {
+    "prefix": "vfor",
+    "body": [
+      "<${1:li} v-for=\"(${2:item}, ${3:index}) in ${4:items}\" :key=\"${2:item}.${5:id}\">",
+      "  $6",
+      "</${1:li}>$0"
+    ],
+    "description": "Bucle v-for con :key"
+  },
+  "v-if / v-else-if / v-else": {
+    "prefix": "vif",
+    "body": [
+      "<template v-if=\"${1:condition}\">",
+      "  $2",
+      "</template>",
+      "<template v-else-if=\"${3:otherCondition}\">",
+      "  $4",
+      "</template>",
+      "<template v-else>",
+      "  $5",
+      "</template>$0"
+    ],
+    "description": "Cadena v-if / v-else-if / v-else"
+  }
+}
