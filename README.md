@@ -21,9 +21,14 @@ Incluye autocompletado con snippets (blink.cmp + friendly-snippets + snippets pr
 | **ripgrep + fd** | — | buscadores de LazyVim (`<leader>sg`, `<leader>ff`) | `sudo pacman -S ripgrep fd` |
 | **base-devel** (gcc, make) | — | compila los parsers de nvim-treesitter y telescope-fzf-native | `sudo pacman -S --needed base-devel` |
 | **Python 3** | — | algunos LSP y herramientas (basedpyright, pyright) | `sudo pacman -S python` |
+| **inotify-tools** | — | file-watching del LSP (`workspace/didChangeWatchedFiles`): que basedpyright vea los `.py` creados después de arrancar, sin quedar "Type unknown" | `sudo pacman -S inotify-tools` |
 | curl, tar, unzip | — | blinks binarios de blink.cmp y paquetes de Mason | vienen con el sistema |
 
-**Otras distros (Debian/Ubuntu):** `sudo apt install neovim git ripgrep fd-find nodejs npm python3 build-essential curl` y una [Nerd Font](https://www.nerdfonts.com/font-downloads).
+**Otras distros (Debian/Ubuntu):** `sudo apt install neovim git ripgrep fd-find nodejs npm python3 build-essential curl inotify-tools` y una [Nerd Font](https://www.nerdfonts.com/font-downloads).
+
+> **macOS:** `inotify-tools` no aplica: Neovim solo omite `didChangeWatchedFiles` en Linux/BSD. Sin `inotifywait`, Neovim usa `watchdirs` (polling): funciona, solo es menos eficiente.
+>
+> **Comprobación** (abre un `.py` y ejecuta): `:lua print(vim.inspect(vim.tbl_keys(vim.lsp.get_clients()[1].registrations)))` → debe incluir `"workspace/didChangeWatchedFiles"`.
 
 ### Solo si vas a usar esos lenguajes
 
