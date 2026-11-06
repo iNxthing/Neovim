@@ -6,3 +6,4 @@ require("config.lsp")
 
 vim.opt.relativenumber = false
 vim.g.autoformat = false
+vim.opt.wrap = true

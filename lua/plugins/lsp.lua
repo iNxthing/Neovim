@@ -37,7 +37,20 @@ return {
         lua_ls = {},
 
         -- Python
-        basedpyright = {},
+        -- basedpyright arranca por defecto en modo "all" (el más estricto que
+        -- existe) y spamea avisos tipo reportUnknown*/reportUnusedCallResult
+        -- en cualquier código Python normal. "standard" = el mismo nivel de
+        -- pyright: errores reales, sin ruido.
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              analysis = {
+                typeCheckingMode = "standard",
+                diagnosticMode = "openFilesOnly",
+              },
+            },
+          },
+        },
         -- C# / VB.NET
         omnisharp = {},
         -- Java / Kotlin
