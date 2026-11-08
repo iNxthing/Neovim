@@ -163,6 +163,10 @@ Para un **mismo snippet en varios filetypes** (p.ej. ts/tsx/js/jsx) sin duplicar
 
 ## ⌨️ Atajos principales (`<leader>` = espacio)
 
+> 💡 **Documentación de Atajos:**
+> - ⚡ **[CHEATSHEET.md](CHEATSHEET.md)**: Guía práctica y esencial para el workflow diario en Neovim.
+> - 📖 **[KEYMAPS.md](KEYMAPS.md)**: Referencia exhaustiva con los más de 300 atajos activos organizados por categorías.
+
 ### Navegación LSP
 
 | Atajo | Acción |
