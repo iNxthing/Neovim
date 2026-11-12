@@ -4,6 +4,6 @@ require("config.remote_clipboard").setup()
 -- Capacidades de LSP: file-watching habilitado (ver config/lsp.lua).
 require("config.lsp")
 
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 vim.g.autoformat = false
 vim.opt.wrap = true
