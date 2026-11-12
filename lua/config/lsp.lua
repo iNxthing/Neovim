@@ -17,3 +17,36 @@ vim.lsp.config("*", {
     },
   },
 })
+
+-- Intérprete de Python por proyecto.
+--
+-- Pyright/basedpyright NO detectan un `.venv` por su cuenta (esa comodidad es
+-- de Pylance/VSCode). Resuelven el entorno desde `python.pythonPath`, o si no,
+-- desde el `python` que esté en el PATH. Resultado: si abres nvim sin el venv
+-- activado, cualquier `import fastapi` da "could not be resolved".
+--
+-- Acá se le pasa la ruta absoluta del venv cuando el root del LSP tiene uno.
+-- Tiene que ser en `on_init`: nvim congela `client.settings` al crear el
+-- cliente, así que mutar `config.settings` en `before_init` nunca llega al
+-- servidor. `venvPath = "."` tampoco sirve: pyright no lo resuelve relativo
+-- al workspace en modo LSP.
+for _, server in ipairs({ "pyright", "basedpyright" }) do
+  vim.lsp.config(server, {
+    on_init = function(client)
+      local root = client.config.root_dir
+      if not root then
+        return
+      end
+      for _, dir in ipairs({ ".venv", "venv", "env" }) do
+        local python = root .. "/" .. dir .. "/bin/python"
+        if vim.fn.executable(python) == 1 then
+          client.settings = client.settings or {}
+          client.settings.python = client.settings.python or {}
+          client.settings.python.pythonPath = python
+          client:notify("workspace/didChangeConfiguration", { settings = client.settings })
+          return
+        end
+      end
+    end,
+  })
+end
