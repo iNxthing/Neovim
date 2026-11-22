@@ -23,15 +23,9 @@ return {
         cssls = {},
         -- Vue (reenvía las peticiones de TS a vtsls)
         vue_ls = {},
-        -- Emmet: snippets con tabstops para HTML/CSS/JSX/Vue (lo que VSCode
-        -- trae de serie y los LSP de html/css no proveen)
-        emmet_ls = {
-          filetypes = {
-            "html", "css", "scss", "sass", "less",
-            "javascriptreact", "typescriptreact",
-            "vue", "svelte", "astro",
-          },
-        },
+        -- Deshabilitar Emmet para que no inyecte etiquetas fantasma en el autocompletado
+        emmet_ls = { enabled = false },
+        emmet_language_server = { enabled = false },
 
         --lua
         lua_ls = {},

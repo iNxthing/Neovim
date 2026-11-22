@@ -103,7 +103,6 @@ El primer arranque tarda unos segundos (fetch de ~60 plugins y compilación de p
 |---|---|
 | `vtsls` | TypeScript / JavaScript (desde el extra `lang.typescript`) |
 | `vue_ls` | Vue SFC (reenvía TS a `vtsls`) |
-| `emmet_ls` | Emmet en HTML/CSS/SCSS/JSX/Vue/Svelte/Astro |
 | `html` / `cssls` | HTML · CSS/SCSS/Less |
 | `lua_ls` | Lua (viene activo por defecto en LazyVim) |
 | `basedpyright` | Python |
